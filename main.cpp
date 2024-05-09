@@ -87,10 +87,32 @@ int main() {
                 printf("Average = %f\n",average);
                 break;
             case 6:
+                fptr = fopen("letters.txt", "w+");
+                if (fptr == 0)
+                {
+                    exit(1);
+                }
+                for (int u = 0; u < SIZE ; ++u)
+                {
+                    fputc(array[u], fptr);
+                }
 
+                fclose(fptr);
+
+                puts("Array Saved");
                 break;
             case 7:
-
+                fptr = fopen("letters.txt", "r+");
+                fseek(fptr, 0, SEEK_SET);
+                printf("Oto zawartosc pliku:\n");
+                for (int i = 0; i < SIZE; i++)
+                {
+                    array [i] = fgetc(fptr);
+                    fseek(fptr, 0, SEEK_CUR);
+                    printf("%d", array [i]);
+                }
+                printf("\n");
+                fclose(fptr);
                 break;
         }
     }
